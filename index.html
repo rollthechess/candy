@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="왕사탕과 별사탕의 누적 소모 엘리프와 할인 비용을 계산하고, 비교 모드에서 두 가지 충전 계획을 비교합니다.">
+  <title>몇충 계산기</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <main id="app">
+    <header class="page-header">
+      <h1>몇충 계산기</h1>
+      <label class="compare-toggle" for="comparison-mode">
+        <input id="comparison-mode" type="checkbox" aria-controls="calculator-b" disabled>
+        <span>비교 모드</span>
+      </label>
+    </header>
+
+    <div class="calculators" id="calculators">
+    <article class="calculator" id="calculator-a" aria-labelledby="calculator-title">
+    <h2 class="calculator-title" id="calculator-title">계산 1</h2>
+
+    <section aria-labelledby="king-title">
+      <h3 id="king-title">왕사탕</h3>
+      <div class="input-caption">
+        <label for="king-count">충전 횟수</label>
+        <span class="hint" id="king-hint">0~15회</span>
+      </div>
+      <div class="input-row">
+        <span class="input-group">
+          <input id="king-count" name="king-count" type="number" inputmode="numeric" min="0" max="15" step="1" value="0" autocomplete="off" aria-describedby="king-hint king-error">
+          <button id="king-increase" class="step-button" type="button" aria-label="왕사탕 충전 횟수 1회 늘리기" aria-controls="king-count">+</button>
+          <button id="king-decrease" class="step-button" type="button" aria-label="왕사탕 충전 횟수 1회 줄이기" aria-controls="king-count" disabled>-</button>
+          <span>회</span>
+        </span>
+        <label class="discount-toggle" for="king-discount">
+          <input id="king-discount" name="king-discount" type="checkbox" aria-labelledby="king-title king-discount-label">
+          <span id="king-discount-label">할인 적용</span>
+        </label>
+      </div>
+      <p class="error" id="king-error" hidden></p>
+      <dl>
+        <div class="result"><dt>누적 소모 엘리프<span id="king-discount-note" hidden> (할인 적용)</span></dt><dd><output id="king-cost" for="king-count king-discount" aria-live="off">0</output> 엘리프<span id="king-difference" class="cost-difference" hidden></span></dd></div>
+      </dl>
+    </section>
+
+    <section aria-labelledby="star-title">
+      <h3 id="star-title">별사탕</h3>
+      <div class="input-caption">
+        <label for="star-count">충전 횟수</label>
+        <span class="hint" id="star-hint">0~5회</span>
+      </div>
+      <div class="input-row">
+        <span class="input-group">
+          <input id="star-count" name="star-count" type="number" inputmode="numeric" min="0" max="5" step="1" value="0" autocomplete="off" aria-describedby="star-hint star-error">
+          <button id="star-increase" class="step-button" type="button" aria-label="별사탕 충전 횟수 1회 늘리기" aria-controls="star-count">+</button>
+          <button id="star-decrease" class="step-button" type="button" aria-label="별사탕 충전 횟수 1회 줄이기" aria-controls="star-count" disabled>-</button>
+          <span>회</span>
+        </span>
+        <label class="discount-toggle" for="star-discount">
+          <input id="star-discount" name="star-discount" type="checkbox" aria-labelledby="star-title star-discount-label">
+          <span id="star-discount-label">할인 적용</span>
+        </label>
+      </div>
+      <p class="error" id="star-error" hidden></p>
+      <dl>
+        <div class="result"><dt>누적 소모 엘리프<span id="star-discount-note" hidden> (할인 적용)</span></dt><dd><output id="star-cost" for="star-count star-discount" aria-live="off">0</output> 엘리프<span id="star-difference" class="cost-difference" hidden></span></dd></div>
+      </dl>
+    </section>
+
+    <section class="total" aria-labelledby="total-title">
+      <h3 id="total-title">전체 합계</h3>
+      <dl aria-live="polite" aria-atomic="true">
+        <div class="result"><dt>누적 소모 엘리프<span id="total-discount-note" hidden></span></dt><dd><output id="total-cost" for="king-count star-count king-discount star-discount" aria-live="off">0</output> 엘리프<span id="total-difference" class="cost-difference" hidden></span></dd></div>
+      </dl>
+    </section>
+    </article>
+    </div>
+  </main>
+
+</body>
+</html>
